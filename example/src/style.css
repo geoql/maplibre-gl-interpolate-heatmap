@@ -1,4 +1,4 @@
-@import 'mapbox-gl/dist/mapbox-gl.css';
+@import 'maplibre-gl/dist/maplibre-gl.css';
 
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;

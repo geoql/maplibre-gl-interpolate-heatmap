@@ -15,9 +15,18 @@ map.dragRotate.disable();
 map.touchZoomRotate.disableRotation();
 
 map.on('load', async () => {
-  map.addControl(new maplibregl.FullscreenControl(), 'top-right');
-  map.addControl(new maplibregl.NavigationControl(), 'bottom-right');
-  map.addControl(new maplibregl.ScaleControl(), 'bottom-left');
+  map.addControl(
+    new maplibregl.FullscreenControl({ container: map.getCanvasContainer() }),
+    'top-right',
+  );
+  map.addControl(
+    new maplibregl.NavigationControl({ visualizePitch: true }),
+    'bottom-right',
+  );
+  map.addControl(
+    new maplibregl.ScaleControl({ unit: 'metric' }),
+    'bottom-left',
+  );
   const startingLatitude = -80;
   const startingLongitude = -180;
   const endingLatitude = 80;
