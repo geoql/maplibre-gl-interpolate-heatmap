@@ -54,6 +54,7 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
     "maplibre-gl": "^2.4.0",
+    "maplibre-gl-interpolate-heatmap": "^0.0.0",
     "prettier": "^2.8.8",
     "shipjs": "^0.26.3",
     "typescript": "^5.0.4",
