@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^18.2.0",
-    "@commitlint/config-conventional": "^17.8.0",
+    "@commitlint/config-conventional": "^18.1.0",
     "@types/earcut": "^2.1.4",
     "@types/node": "^20.8.10",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
