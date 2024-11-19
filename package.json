@@ -51,7 +51,7 @@
     "eslint-plugin-jsdoc": "^46.9.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-security": "^1.7.1",
-    "husky": "^8.0.3",
+    "husky": "^9.1.7",
     "lint-staged": "^15.2.2",
     "maplibre-gl": "^2.4.0",
     "maplibre-gl-interpolate-heatmap": "^0.0.0",
