@@ -13,7 +13,7 @@
     "maplibre-gl-interpolate-heatmap": "^0.0.1"
   },
   "devDependencies": {
-    "@types/node": "^22.13.4",
+    "@types/node": "^22.13.5",
     "typescript": "^5.7.3",
     "vite": "^4.5.0"
   }
