@@ -57,7 +57,7 @@
     "maplibre-gl-interpolate-heatmap": "^0.0.0",
     "prettier": "^2.8.8",
     "shipjs": "^0.26.3",
-    "typescript": "^5.5.2",
+    "typescript": "^5.8.2",
     "vite": "^4.5.0",
     "vite-plugin-dts": "^3.6.4"
   },
