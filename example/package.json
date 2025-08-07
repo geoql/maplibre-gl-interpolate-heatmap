@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "maplibre-gl": "^5.6.1",
+    "maplibre-gl": "^5.6.2",
     "maplibre-gl-interpolate-heatmap": "^0.0.1"
   },
   "devDependencies": {
