@@ -29,9 +29,7 @@
     "publish:npm": "npm publish --access public",
     "publish:jsr": "bunx jsr publish"
   },
-  "dependencies": {
-    "earcut": "2.2.4"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "^20.3.1",
     "@commitlint/config-conventional": "^20.3.1",

@@ -8,5 +8,6 @@ export default defineConfig({
   clean: true,
   sourcemap: true,
   treeshake: true,
-  external: ['maplibre-gl', 'earcut'],
+  external: ['maplibre-gl'],
+  noExternal: ['earcut'],
 });
