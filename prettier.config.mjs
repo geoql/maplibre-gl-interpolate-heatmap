@@ -1,6 +1,5 @@
-import type { Config } from 'prettier';
-
-const config: Config = {
+/** @type {import('prettier').Config} */
+const config = {
   $schema: 'http://json.schemastore.org/prettierrc',
   semi: true,
   arrowParens: 'always',

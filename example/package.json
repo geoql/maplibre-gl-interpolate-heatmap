@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "maplibre-gl": "^5.9.0",
-    "maplibre-gl-interpolate-heatmap": "^0.0.1"
+    "maplibre-gl-interpolate-heatmap": "file:.."
   },
   "devDependencies": {
     "@types/node": "^24.8.0",
