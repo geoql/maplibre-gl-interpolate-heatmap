@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/geoql/maplibre-gl-interpolate-heatmap/compare/v0.1.1...v0.1.2) (2026-01-12)
+
+
+### Bug Fixes
+
+* **ci:** use correct release-please output variable names ([da53a3c](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/da53a3c54ea19f10276a8ec93f20814e99fab329))
+
 ## [0.1.1](https://github.com/geoql/maplibre-gl-interpolate-heatmap/compare/v0.1.0...v0.1.1) (2026-01-12)
 
 
