@@ -33,18 +33,18 @@
     "earcut": "2.2.4"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.8.0",
-    "@commitlint/config-conventional": "^19.8.0",
-    "@types/earcut": "^2.1.4",
-    "@types/node": "^22.15.21",
+    "@commitlint/cli": "^20.3.1",
+    "@commitlint/config-conventional": "^20.3.1",
+    "@types/earcut": "^3.0.0",
+    "@types/node": "^25.0.6",
     "husky": "^9.1.7",
     "is-ci": "^4.1.0",
-    "lint-staged": "^16.1.0",
+    "lint-staged": "^16.2.7",
     "maplibre-gl": "^5.9.0",
-    "oxlint": "^1.1.0",
-    "prettier": "^3.5.3",
-    "tsdown": "^0.11.10",
-    "typescript": "^5.8.3"
+    "oxlint": "^1.38.0",
+    "prettier": "^3.7.4",
+    "tsdown": "^0.19.0",
+    "typescript": "^5.9.3"
   },
   "peerDependencies": {
     "maplibre-gl": ">=3.0.0"
