@@ -18,15 +18,15 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     outputs:
-      release_created: ${{ steps.release.outputs['release_created'] }}
-      tag_name: ${{ steps.release.outputs['tag_name'] }}
-      version: ${{ steps.release.outputs['version'] }}
+      release_created: ${{ steps.release.outputs['.--release_created'] }}
+      tag_name: ${{ steps.release.outputs['.--tag_name'] }}
+      version: ${{ steps.release.outputs['.--version'] }}
     steps:
       - name: Release Please
         id: release
         uses: googleapis/release-please-action@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.RELEASE_PAT }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
 
@@ -44,7 +44,7 @@ jobs:
           ref: ${{ needs.release-please.outputs.tag_name || github.event.inputs.tag }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 'lts/*'
           registry-url: 'https://registry.npmjs.org'
