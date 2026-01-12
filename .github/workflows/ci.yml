@@ -58,3 +58,38 @@ jobs:
           name: dist
           path: dist/
           retention-days: 7
+
+  build-demo:
+    name: Build Demo
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Install example dependencies
+        run: bun install --frozen-lockfile
+        working-directory: ./example
+
+      - name: Build example
+        run: bun run build
+        working-directory: ./example
+        env:
+          VITE_WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./example/dist
