@@ -79,6 +79,9 @@ jobs:
           name: dist
           path: dist/
 
+      - name: Install root dependencies
+        run: bun install --frozen-lockfile
+
       - name: Install example dependencies
         run: bun install --frozen-lockfile
         working-directory: ./example
