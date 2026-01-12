@@ -18,9 +18,6 @@ jobs:
   build:
     name: Build Demo
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./example
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -30,11 +27,19 @@ jobs:
         with:
           bun-version: latest
 
-      - name: Install dependencies
+      - name: Install root dependencies
         run: bun install --frozen-lockfile
 
-      - name: Build
+      - name: Build library
         run: bun run build
+
+      - name: Install example dependencies
+        run: bun install --frozen-lockfile
+        working-directory: ./example
+
+      - name: Build example
+        run: bun run build
+        working-directory: ./example
         env:
           VITE_WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
 
