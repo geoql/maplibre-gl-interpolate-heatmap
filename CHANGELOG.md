@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/geoql/maplibre-gl-interpolate-heatmap/compare/v0.1.0...v0.1.1) (2026-01-12)
+
+
+### Bug Fixes
+
+* simplify .npmrc and format release files ([58a6073](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/58a60731cb787a3535405f161dc93635b9baae94))
+
 ## [0.1.0](https://github.com/geoql/maplibre-gl-interpolate-heatmap/compare/v0.0.1...v0.1.0) (2026-01-12)
 
 ### ⚠ BREAKING CHANGES
