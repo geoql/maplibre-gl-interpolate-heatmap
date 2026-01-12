@@ -1,199 +1,144 @@
-# Mapbox :: Interpolated Heatmap(s)
+# MapLibre GL Interpolate Heatmap
 
-[![CI Workflow Status](https://img.shields.io/github/workflow/status/geoql/maplibre-gl-interpolate-heatmap/ci?logo=github-actions)](https://github.com/geoql/maplibre-gl-interpolate-heatmap/actions/workflows/ci.yml)
-[![CodeQL Workflow Status](https://img.shields.io/github/workflow/status/geoql/maplibre-gl-interpolate-heatmap/codeql?logo=github-actions)](https://github.com/geoql/maplibre-gl-interpolate-heatmap/actions/workflows/codeql.yml)
-[![Ship.js Workflow Status](https://img.shields.io/github/workflow/status/geoql/maplibre-gl-interpolate-heatmap/Ship%20js%20trigger?label=⛴%20Ship.js%20trigger)](https://github.com/geoql/maplibre-gl-interpolate-heatmap/actions/workflows/shipjs-trigger.yml)
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/geoql/maplibre-gl-interpolate-heatmap?sort=semver&logo=github)](https://github.com/geoql/maplibre-gl-interpolate-heatmap/releases)
+[![CI](https://img.shields.io/github/actions/workflow/status/geoql/maplibre-gl-interpolate-heatmap/ci.yml?branch=main&logo=github-actions&logoColor=white)](https://github.com/geoql/maplibre-gl-interpolate-heatmap/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/maplibre-gl-interpolate-heatmap?logo=npm)](https://www.npmjs.com/package/maplibre-gl-interpolate-heatmap)
+[![JSR](https://jsr.io/badges/@geoql/maplibre-gl-interpolate-heatmap)](https://jsr.io/@geoql/maplibre-gl-interpolate-heatmap)
 [![npm](https://img.shields.io/npm/dm/maplibre-gl-interpolate-heatmap?logo=npm)](http://npm-stat.com/charts.html?package=maplibre-gl-interpolate-heatmap)
-[![npm bundle size (version)](https://img.shields.io/bundlephobia/min/maplibre-gl-interpolate-heatmap/latest)](https://bundlephobia.com/package/maplibre-gl-interpolate-heatmap@latest)
-[![npm type definitions](https://img.shields.io/npm/types/maplibre-gl-interpolate-heatmap?logo=TypeScript)](https://github.com/geoql/maplibre-gl-interpolate-heatmap/blob/master/package.json)
-[![DeepScan grade](https://deepscan.io/api/teams/9055/projects/19648/branches/513258/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=9055&pid=19648&bid=513258)
-[![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/geoql/maplibre-gl-interpolate-heatmap)](https://snyk.io/test/github/geoql/maplibre-gl-interpolate-heatmap)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/maplibre-gl-interpolate-heatmap)](https://bundlephobia.com/package/maplibre-gl-interpolate-heatmap)
 [![GitHub contributors](https://img.shields.io/github/contributors/geoql/maplibre-gl-interpolate-heatmap)](https://github.com/geoql/maplibre-gl-interpolate-heatmap/graphs/contributors)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fvinayakkulkarni%2Fmaplibre-gl-interpolate-heatmap.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fvinayakkulkarni%2Fmaplibre-gl-interpolate-heatmap?ref=badge_shield)
 
-[![eslint](https://img.shields.io/npm/dependency-version/maplibre-gl-interpolate-heatmap/dev/eslint?logo=eslint)](https://eslint.org/)
-[![prettier](https://img.shields.io/npm/dependency-version/maplibre-gl-interpolate-heatmap/dev/prettier?logo=prettier)](https://prettier.io/)
-[![vite](https://img.shields.io/npm/dependency-version/maplibre-gl-interpolate-heatmap/dev/vite?logo=vite)](https://vitejs.dev/)
+[![oxlint](https://img.shields.io/badge/linter-oxlint-7c5dfa?logo=oxc)](https://oxc.rs)
+[![prettier](https://img.shields.io/badge/formatter-prettier-f7b93e?logo=prettier)](https://prettier.io/)
+[![tsdown](https://img.shields.io/badge/bundler-tsdown-3178c6)](https://tsdown.dev/)
 [![typescript](https://img.shields.io/npm/dependency-version/maplibre-gl-interpolate-heatmap/dev/typescript?logo=TypeScript)](https://www.typescriptlang.org/)
 
 ---
 
-InterpolateHeatmapLayer is a minimalist JavaScript library for rendering temperature maps (or interpolate heatmaps) with [Mapbox GL JS](https://docs.mapbox.com/maplibre-gl-js/guides/). This library was greatly inspired by the [temperature-map-gl](https://github.com/ham-systems/temperature-map-gl) library, and depends on [Earcut](https://github.com/mapbox/earcut).
+A MapLibre GL JS custom layer for rendering interpolated heatmaps (extracting average values) with WebGL shaders. Works with **MapLibre GL JS v5+** (WebGL2).
 
-Currently, Mapbox provides a heatmap layer that represent the **density** of points in an area, like on this picture:
+This library was greatly inspired by [temperature-map-gl](https://github.com/ham-systems/temperature-map-gl) and depends on [Earcut](https://github.com/mapbox/earcut).
+
+## Density vs Interpolated Heatmaps
+
+MapLibre provides a built-in heatmap layer that represents the **density** of points:
 
 ![Density heatmap](.github/images/densityHeatmap.png)
 
-This library aims at providing a heatmap that can define a color to any location by making an **average** of the values of the surroundings points, like on this picture:
+This library provides an **interpolated** heatmap that calculates colors based on the **weighted average** of surrounding point values:
 
 ![Average heatmap](.github/images/averageHeatmap.png)
 
-Except a JavaScript pre-processing step, all computation is made with WebGL shaders.
+## Installation
 
-## Examples
+```bash
+# npm
+npm install maplibre-gl-interpolate-heatmap maplibre-gl
 
-A live demo showing the global temperature is available [here](https://rylern.github.io/TemperatureMap/), described [here](https://github.com/Rylern/TemperatureMap).
+# bun
+bun add maplibre-gl-interpolate-heatmap maplibre-gl
 
-## Install
-
-- Browser:
-
-  - Import the library before the script using it:
-
-    ```html
-    <body>
-      <div id="map"></div>
-      <script src="maplibre-gl-interpolate-heatmap.cjs.js"></script>
-      <script src="map.js"></script>
-    </body>
-    ```
-
-  - Create the Mapbox map and add the layer created by `interpolateHeatmapLayer.create()`:
-
-  ```javascript
-  // map.js
-
-  const map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/light-v10',
-  });
-
-  map.on('load', () => {
-    const layer = new MapboxInterpolateHeatmapLayer({
-      // parameters here
-    });
-    map.addLayer(layer);
-  });
-  ```
-
-- NPM:
-
-  ```bash
-  npm install maplibre-gl-interpolate-heatmap
-  ```
-
-  ```javascript
-  import { MapboxInterpolateHeatmapLayer } from 'maplibre-gl-interpolate-heatmap';
-
-  const map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/light-v10',
-  });
-
-  map.on('load', () => {
-    const layer = new MapboxInterpolateHeatmapLayer({
-      // parameters here
-    });
-    map.addLayer(layer);
-  });
-  ```
+# JSR
+bunx jsr add @geoql/maplibre-gl-interpolate-heatmap
+```
 
 ## Usage
 
-The `new MapboxInterpolateHeatmapLayer()` function has the following parameters:
+```typescript
+import maplibregl from 'maplibre-gl';
+import { MaplibreInterpolateHeatmapLayer } from 'maplibre-gl-interpolate-heatmap';
+import 'maplibre-gl/dist/maplibre-gl.css';
 
-- `data`: An array of points, each point being an object containing a latitude `lat`, a longitude `lon`, and a value `val`. Example:
+const map = new maplibregl.Map({
+  container: 'map',
+  style: 'https://demotiles.maplibre.org/style.json',
+  center: [0, 20],
+  zoom: 2,
+});
 
-  ```javascript
-  data = [
-    {
-      lat: 62.470663,
-      lon: 6.176846,
-      val: 16,
-    },
-    {
-      lat: 48.094903,
-      lon: -1.371596,
-      val: 20,
-    },
-  ];
-  ```
+map.on('load', () => {
+  const layer = new MaplibreInterpolateHeatmapLayer({
+    id: 'temperature',
+    data: [
+      { lat: 62.47, lon: 6.18, val: 16 },
+      { lat: 48.09, lon: -1.37, val: 20 },
+      { lat: 35.68, lon: 139.69, val: 28 },
+    ],
+    opacity: 0.5,
+    minValue: 10,
+    maxValue: 35,
+  });
 
-  Since Mapbox uses the Web Mercator projection that projects the poles at infinity, remember to define the latitude within -85° and 85°. Default value: `[]`.
+  map.addLayer(layer);
+});
+```
 
-- `id`: unique [Mapbox layer](https://docs.mapbox.com/maplibre-gl-js/style-spec/layers/#id) name. Default value: `''`.
+## Options
 
-- `opacity`: a number between 0 and 1 describing the transparency of the color. Default value: `0.5`.
+| Option              | Type                     | Default     | Description                                                      |
+| ------------------- | ------------------------ | ----------- | ---------------------------------------------------------------- |
+| `id`                | `string`                 | `''`        | Unique layer ID                                                  |
+| `data`              | `Array<{lat, lon, val}>` | `[]`        | Data points (latitude must be within -85° to 85°)                |
+| `opacity`           | `number`                 | `0.5`       | Layer opacity (0-1)                                              |
+| `minValue`          | `number`                 | `Infinity`  | Value mapped to blue color                                       |
+| `maxValue`          | `number`                 | `-Infinity` | Value mapped to red color                                        |
+| `p`                 | `number`                 | `3`         | IDW power parameter (higher = more uniform colors around points) |
+| `framebufferFactor` | `number`                 | `0.3`       | Computation resolution (0-1, lower = faster but less accurate)   |
+| `aoi`               | `Array<{lat, lon}>`      | `[]`        | Area of interest polygon (empty = entire map)                    |
+| `valueToColor`      | `string`                 | See below   | GLSL function mapping value (0-1) to `vec3` color                |
+| `valueToColor4`     | `string`                 | See below   | GLSL function mapping value to `vec4` with alpha                 |
 
-- `minValue`: define the value corresponding to the blue color. When it's not defined, the lowest value of `points` is represented by the blue color. If some value of `points` is lower than `minValue`, `minValue` takes this value. Default value: `Infinity`.
+### Custom Color Functions
 
-- `maxValue` same, but for the red color. Default value: `-Infinity`.
+Default `valueToColor` (blue → green → red gradient):
 
-- `framebufferFactor`: number between 0 and 1. In short, if the framebuffer factor is around 0, the computation will be faster but less accurate. Take a look at the technical explanation part if you want to know what exactly this parameter is. Default value: `0.3`.
+```glsl
+vec3 valueToColor(float value) {
+  return vec3(
+    max((value - 0.5) * 2.0, 0.0),
+    1.0 - 2.0 * abs(value - 0.5),
+    max((0.5 - value) * 2.0, 0.0)
+  );
+}
+```
 
-- `p`: a factor affecting the computation of the color. A high value makes the color uniform around each point. Once again, take a look at the technical explanation part if you want to know more. Default value: `3`.
+Default `valueToColor4`:
 
-- `aoi`: area of interest, the layer will only be displayed inside that area. It's a list of coordinates with the same format as `points` (without the `val` attribute). If the list is empty, the entire map is the region of interest. Default value: `[]`.
+```glsl
+vec4 valueToColor4(float value, float defaultOpacity) {
+  return vec4(valueToColor(value), defaultOpacity);
+}
+```
 
-- `valueToColor`: [GLSL](https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language) function (passed as a string) that map a value to the heatmap color. By default, a low value is colored blue, a medium green and a high red. This parameter allows you to change this behavior. The function must be named `valueToColor` with a `float` parameter (which will take values between 0 and 1), and must return a ` vec3` (with each component between 0 and 1). Default value:
+## How It Works
 
-  ```glsl
-  vec3 valueToColor(float value) {
-    return vec3(max((value-0.5)*2.0, 0.0), 1.0 - 2.0*abs(value - 0.5), max((0.5-value)*2.0, 0.0));
-  }
-  ```
+Colors are computed using [Inverse Distance Weighting (IDW)](https://en.wikipedia.org/wiki/Inverse_distance_weighting):
 
-- `valueToColor4`: Same as `valueToColor`, but with alpha channel support. The function name and signature must be defined as:
+1. Render N textures, each containing `wi * ui` (red) and `wi` (green) per fragment
+2. Blend textures with accumulator to sum all contributions
+3. Divide red by green channel to get interpolated value `u(x)`
+4. Map value to color using the GLSL color function
 
-  `vec4 valueToColor4(float value, float defaultOpacity)`
+Where `wi(x) = 1 / d(x, xi)^p` is the weight based on distance.
 
-  Default value:
+## Requirements
 
-  ```glsl
-  vec4 valueToColor4(float value, float defaultOpacity) {
-      return vec4(valueToColor(value), defaultOpacity);
-  }
-  ```
-
-## Technical explanation
-
-The color is computed using the [Inverse Distance Weighting](https://en.wikipedia.org/wiki/Inverse_distance_weighting) (IDW) algorithm:
-
-Let:
-
-![equation](https://latex.codecogs.com/gif.latex?%5B%28x_1%2C%20u1%29%2C%20...%2C%20%28x_N%2C%20u_N%29%5D)
-
-be _N_ known data points. We want to find a continuous and once differentiable function:
-
-![equation](https://latex.codecogs.com/gif.latex?u%28x%29%3A%20x%20%5Crightarrow%20R)
-
-such as:
-
-![equation](https://latex.codecogs.com/gif.latex?%5Cforall%20i%20%5Cin%20%5B1%2C%20N%5D%2C%20u%28x_i%29%20%3D%20u_i)
-
-The basic form of the IDW is:
-
-![equation](https://latex.codecogs.com/gif.latex?u%28x%29%20%3D%20%5Cleft%5C%7B%20%5Cbegin%7Barray%7D%7Bll%7D%20%5Cfrac%7B%5Csum_%7Bi%3D1%7D%5E%7BN%7D%20%5Comega_i%20u_i%7D%7B%5Csum_%7Bi%3D1%7D%5E%7BN%7D%20%5Comega_i%7D%20%26%20%5Cmbox%7Bif%20%7D%20%5Cforall%20i%20%5Cin%20%5B1%2C%20N%5D%2C%20d%28x%2C%20x_i%29%20%5Cneq%200%20%5C%5C%20u_i%20%26%20%5Cmbox%7Belse.%7D%20%5Cend%7Barray%7D%20%5Cright.)
-
-where
-
-![equation](https://latex.codecogs.com/gif.latex?%5Comega_i%28x%29%20%3D%20%5Cfrac%7B1%7D%7Bd%28x%2C%20x_i%29%5Ep%7D)
-
-In WebGL:
-
-- First, we render _N_ textures. Each fragment of each texture contains _wi\*ui_ in its red channel, and _wi_ in its green channel.
-- Then, we use blending with accumulator configuration on these _N_ textures. It creates one texture, containing the sum of the _N_ textures. Therefore, we can get u(x) for each fragment by dividing the red channel by the green channel.
-- We pass this texture to the shader rendering the heatmap, convert u(x) to a color, and finally display this color.
-
-The size of the computation textures is the size of the rendering texture multiplied by the `framebufferFactor`. This factor can be below 0.5 without any real visual consequences. If the user has defined a region of interest and uses a `framebufferFactor` < 1, visual artifacts appear at the edge of the heatmap. To prevent this, the rendering texture takes the whole screen size if `framebufferFactor` < 1.
+- **Node.js** >= 24.0.0
+- **MapLibre GL JS** >= 3.0.0 (v5+ recommended for WebGL2)
 
 ## Contributing
 
-1. Create your feature branch from `dev` (`git checkout -b feat/new-feature`)
-2. Commit your changes (`git commit -Sam 'feat: add feature'`)
-3. Push to the branch (`git push origin feat/new-feature`)
-4. Create a new [Pull Request](https://github.com/geoql/maplibre-gl-interpolate-heatmap/compare)
+1. Fork and create a feature branch from `main`
+2. Make changes following [conventional commits](https://www.conventionalcommits.org/)
+3. Ensure commits are signed ([why?](https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html))
+4. Submit a PR
 
-_Note_:
-
-1. Please contribute using [GitHub Flow](https://web.archive.org/web/20191104103724/https://guides.github.com/introduction/flow/)
-2. Commits & PRs will be allowed only if the commit messages & PR titles follow the [conventional commit standard](https://www.conventionalcommits.org/), _read more about it [here](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional#type-enum)_
-3. PS. Ensure your commits are signed. _[Read why](https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html)_
+```bash
+bun install
+bun run build
+bun run lint
+bun run format
+```
 
 ## License
 
-MIT &copy; [GeoSpoc Dev Team](developers@geospoc.com) & Vinayak Kulkarni
-
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fvinayakkulkarni%2Fmaplibre-gl-interpolate-heatmap.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fvinayakkulkarni%2Fmaplibre-gl-interpolate-heatmap?ref=badge_large)
+MIT © [Vinayak Kulkarni](https://github.com/vinayakkulkarni)

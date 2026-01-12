@@ -1,6 +1,8 @@
 import earcut from 'earcut';
-import maplibregl, { CustomLayerInterface } from 'maplibre-gl';
-import type { mat4 } from 'gl-matrix';
+import maplibregl, {
+  type CustomLayerInterface,
+  type CustomRenderMethodInput,
+} from 'maplibre-gl';
 
 type MaplibreInterpolateHeatmapLayerOptions = {
   id: string;
@@ -15,6 +17,11 @@ type MaplibreInterpolateHeatmapLayerOptions = {
   valueToColor4?: string;
   textureCoverSameAreaAsROI?: boolean;
 };
+
+const isWebGL2 = (
+  gl: WebGLRenderingContext | WebGL2RenderingContext,
+): gl is WebGL2RenderingContext =>
+  gl.getParameter(gl.VERSION)?.startsWith('WebGL 2.0');
 
 class MaplibreInterpolateHeatmapLayer implements CustomLayerInterface {
   id: string;
@@ -83,10 +90,15 @@ class MaplibreInterpolateHeatmapLayer implements CustomLayerInterface {
     this.textureCoverSameAreaAsROI = this.framebufferFactor === 1;
   }
 
-  onAdd(map: maplibregl.Map, gl: WebGLRenderingContext): void {
+  onAdd(
+    map: maplibregl.Map,
+    gl: WebGLRenderingContext | WebGL2RenderingContext,
+  ): void {
+    const useWebGL2 = isWebGL2(gl);
     if (
-      !gl.getExtension('OES_texture_float') ||
-      !gl.getExtension('WEBGL_color_buffer_float') ||
+      (!useWebGL2 && !gl.getExtension('OES_texture_float')) ||
+      (!useWebGL2 && !gl.getExtension('WEBGL_color_buffer_float')) ||
+      (useWebGL2 && !gl.getExtension('EXT_color_buffer_float')) ||
       !gl.getExtension('EXT_float_blend')
     ) {
       throw 'WebGL extension not supported';
@@ -217,7 +229,7 @@ class MaplibreInterpolateHeatmapLayer implements CustomLayerInterface {
     ) {
       throw 'WebGL error: Failed to get the storage location of drawing variable';
     }
-    const drawingVertices = [];
+    const drawingVertices: number[] = [];
     if (this.aoi?.length === 0) {
       drawingVertices.push(-1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, -1.0);
     } else {
@@ -269,7 +281,7 @@ class MaplibreInterpolateHeatmapLayer implements CustomLayerInterface {
     gl.texImage2D(
       gl.TEXTURE_2D,
       0,
-      gl.RGBA,
+      useWebGL2 ? gl.RGBA32F : gl.RGBA,
       this.framebufferWidth,
       this.framebufferHeight,
       0,
@@ -324,7 +336,7 @@ class MaplibreInterpolateHeatmapLayer implements CustomLayerInterface {
       gl.texImage2D(
         gl.TEXTURE_2D,
         0,
-        gl.RGBA,
+        useWebGL2 ? gl.RGBA32F : gl.RGBA,
         this.framebufferWidth,
         this.framebufferHeight,
         0,
@@ -335,7 +347,11 @@ class MaplibreInterpolateHeatmapLayer implements CustomLayerInterface {
     };
     map.on('resize', this.resizeFramebuffer);
   }
-  onRemove(map: maplibregl.Map, gl: WebGLRenderingContext): void {
+
+  onRemove(
+    map: maplibregl.Map,
+    gl: WebGLRenderingContext | WebGL2RenderingContext,
+  ): void {
     if (!this.resizeFramebuffer)
       throw new Error('error: required resize frame buffer callback');
     map.off('resize', this.resizeFramebuffer);
@@ -345,7 +361,11 @@ class MaplibreInterpolateHeatmapLayer implements CustomLayerInterface {
     gl.deleteBuffer(this.indicesBuffer);
     gl.deleteFramebuffer(this.computationFramebuffer);
   }
-  prerender(gl: WebGLRenderingContext, matrix: mat4): void {
+
+  prerender(
+    gl: WebGLRenderingContext | WebGL2RenderingContext,
+    options: CustomRenderMethodInput,
+  ): void {
     if (
       !this.framebufferWidth ||
       !this.framebufferHeight ||
@@ -357,6 +377,7 @@ class MaplibreInterpolateHeatmapLayer implements CustomLayerInterface {
     ) {
       throw new Error('error: missing options for prerendering');
     }
+    const matrix = options.defaultProjectionData.mainMatrix;
     gl.disable(gl.DEPTH_TEST);
     gl.enable(gl.BLEND);
     gl.blendEquation(gl.FUNC_ADD);
@@ -398,7 +419,11 @@ class MaplibreInterpolateHeatmapLayer implements CustomLayerInterface {
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
     gl.viewport(0, 0, this.canvas.width, this.canvas.height);
   }
-  render(gl: WebGLRenderingContext, matrix: mat4): void {
+
+  render(
+    gl: WebGLRenderingContext | WebGL2RenderingContext,
+    options: CustomRenderMethodInput,
+  ): void {
     if (
       this.aPositionDraw === undefined ||
       !this.canvas ||
@@ -408,6 +433,7 @@ class MaplibreInterpolateHeatmapLayer implements CustomLayerInterface {
     ) {
       throw new Error('error: missing options for rendering');
     }
+    const matrix = options.defaultProjectionData.mainMatrix;
     gl.useProgram(this.drawProgram);
     gl.bindBuffer(gl.ARRAY_BUFFER, this.drawingVerticesBuffer);
     gl.enableVertexAttribArray(this.aPositionDraw);
@@ -423,38 +449,25 @@ class MaplibreInterpolateHeatmapLayer implements CustomLayerInterface {
     gl.drawElements(gl.TRIANGLES, this.indicesNumber, gl.UNSIGNED_BYTE, 0);
   }
 }
-/**
- * @param {WebGLRenderingContext} gl - WebGL context
- * @param {string } source - source of the shader
- * @returns {WebGLShader | undefined} - compiled shader
- */
+
 function createVertexShader(
-  gl: WebGLRenderingContext,
+  gl: WebGLRenderingContext | WebGL2RenderingContext,
   source: string,
 ): WebGLShader | undefined {
   const vertexShader = gl.createShader(gl.VERTEX_SHADER);
   if (vertexShader) return compileShader(gl, vertexShader, source);
 }
-/**
- * @param {WebGLRenderingContext} gl - WebGL context
- * @param {string } source - source of the shader
- * @returns {WebGLShader | undefined} - compiled shader
- */
+
 function createFragmentShader(
-  gl: WebGLRenderingContext,
+  gl: WebGLRenderingContext | WebGL2RenderingContext,
   source: string,
 ): WebGLShader | undefined {
   const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
   if (fragmentShader) return compileShader(gl, fragmentShader, source);
 }
-/**
- * @param {WebGLRenderingContext} gl - WebGL context
- * @param {WebGLShader} shader - shader to compile
- * @param {string} source - source of the shader
- * @returns {WebGLShader | undefined} - compiled shader
- */
+
 function compileShader(
-  gl: WebGLRenderingContext,
+  gl: WebGLRenderingContext | WebGL2RenderingContext,
   shader: WebGLShader,
   source: string,
 ): WebGLShader | undefined {
@@ -466,14 +479,8 @@ function compileShader(
   return shader;
 }
 
-/**
- * @param {WebGLRenderingContext} gl - WebGL context
- * @param {WebGLShader} vertexShader - vertext shader
- * @param {WebGLShader} fragmentShader - fragment shader
- * @returns {WebGLProgram | null} - compiled program
- */
 function createProgram(
-  gl: WebGLRenderingContext,
+  gl: WebGLRenderingContext | WebGL2RenderingContext,
   vertexShader: WebGLShader,
   fragmentShader: WebGLShader,
 ): WebGLProgram | null {
@@ -488,4 +495,5 @@ function createProgram(
   }
   return program;
 }
+
 export { MaplibreInterpolateHeatmapLayer };

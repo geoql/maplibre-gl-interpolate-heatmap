@@ -1,4 +1,6 @@
-module.exports = {
+import type { Config } from 'prettier';
+
+const config: Config = {
   $schema: 'http://json.schemastore.org/prettierrc',
   semi: true,
   arrowParens: 'always',
@@ -11,3 +13,5 @@ module.exports = {
   useTabs: false,
   endOfLine: 'lf',
 };
+
+export default config;
