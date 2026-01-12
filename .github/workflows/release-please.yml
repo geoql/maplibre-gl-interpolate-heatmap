@@ -62,6 +62,7 @@ jobs:
 
       - name: Publish to npm (OIDC)
         run: npm publish --provenance --access public
+        continue-on-error: true
 
       - name: Publish to JSR (OIDC)
         run: bunx jsr publish --allow-dirty --allow-slow-types
