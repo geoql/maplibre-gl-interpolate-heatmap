@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.1](https://github.com/geoql/maplibre-gl-interpolate-heatmap/compare/v0.1.0...v0.1.1) (2026-01-12)
+
+
+### Miscellaneous
+
+* add .prettierignore for release-please managed files ([a9df058](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/a9df058dfbeb6d62990e63e7534a5d489b07a838))
+* **ci:** remove continue-on-error from npm publish step ([483cb06](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/483cb066a8e98acedf3388f08f743c23113a7ac4))
+
 ## [0.1.0](https://github.com/geoql/maplibre-gl-interpolate-heatmap/compare/v0.0.1...v0.1.0) (2026-01-12)
 
 ### ⚠ BREAKING CHANGES
