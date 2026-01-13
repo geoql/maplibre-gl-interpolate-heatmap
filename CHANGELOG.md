@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.1.3](https://github.com/geoql/maplibre-gl-interpolate-heatmap/compare/v0.1.2...v0.1.3) (2026-01-13)
+
+
+### Bug Fixes
+
+* **deps:** bump actions/download-artifact from 4 to 7 ([#749](https://github.com/geoql/maplibre-gl-interpolate-heatmap/issues/749)) ([2c7d0fe](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/2c7d0fe31e953465894a31f4e0a786aeb3d0ca46))
+* **deps:** bump actions/upload-artifact from 4 to 6 ([#750](https://github.com/geoql/maplibre-gl-interpolate-heatmap/issues/750)) ([1111e2b](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/1111e2bc7b4872b6b31eea5db09c6baab89a867d))
+* **deps:** bump actions/upload-pages-artifact from 3 to 4 ([#748](https://github.com/geoql/maplibre-gl-interpolate-heatmap/issues/748)) ([1b939db](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/1b939dbbece237d20ab94790e52a1a35564006fc))
+* **deps:** bump github/codeql-action from 3 to 4 ([#751](https://github.com/geoql/maplibre-gl-interpolate-heatmap/issues/751)) ([0814a48](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/0814a483ebf0e02be8e9dc193a9e3bce09295fa4))
+
 ## [0.1.2](https://github.com/geoql/maplibre-gl-interpolate-heatmap/compare/v0.1.1...v0.1.2) (2026-01-12)
 
 
