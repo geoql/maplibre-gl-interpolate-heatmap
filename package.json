@@ -34,7 +34,7 @@
     "@commitlint/cli": "^20.3.1",
     "@commitlint/config-conventional": "^20.3.1",
     "@types/earcut": "^3.0.0",
-    "@types/node": "^25.0.6",
+    "@types/node": "^25.0.7",
     "husky": "^9.1.7",
     "is-ci": "^4.1.0",
     "lint-staged": "^16.2.7",
