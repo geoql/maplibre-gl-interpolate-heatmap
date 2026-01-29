@@ -321,7 +321,7 @@ class MaplibreInterpolateHeatmapLayer implements CustomLayerInterface {
     minValue = minValue < this.minValue ? minValue : this.minValue;
     maxValue = maxValue > this.maxValue ? maxValue : this.maxValue;
     this.points.forEach((point) => {
-      point[2] = (point[2] - minValue) / (maxValue - minValue);
+      point[2] = (point[2]! - minValue) / (maxValue - minValue);
     });
     this.resizeFramebuffer = () => {
       if (!this.canvas || !this.canvas.width || !this.canvas.height)
@@ -384,7 +384,11 @@ class MaplibreInterpolateHeatmapLayer implements CustomLayerInterface {
     gl.blendFunc(gl.ONE, gl.ONE);
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
     gl.useProgram(this.computationProgram);
-    gl.uniformMatrix4fv(this.uMatrixComputation, false, matrix);
+    gl.uniformMatrix4fv(
+      this.uMatrixComputation,
+      false,
+      new Float32Array(matrix as number[]),
+    );
     gl.uniform1f(this.uP, this.p);
     gl.uniform2f(
       this.uFramebufferSize,
@@ -398,8 +402,8 @@ class MaplibreInterpolateHeatmapLayer implements CustomLayerInterface {
     for (let i = 0; i < this.points.length; i += 1) {
       const point = this.points.at(i);
       if (!point) throw new Error(`error: point not found at index: ${i}`);
-      gl.uniform1f(this.uUi, point[2]);
-      gl.uniform2f(this.uXi, point[0], point[1]);
+      gl.uniform1f(this.uUi, point[2]!);
+      gl.uniform2f(this.uXi, point[0]!, point[1]!);
       gl.bindBuffer(gl.ARRAY_BUFFER, this.computationVerticesBuffer);
       gl.enableVertexAttribArray(this.aPositionComputation);
       gl.vertexAttribPointer(
@@ -438,7 +442,11 @@ class MaplibreInterpolateHeatmapLayer implements CustomLayerInterface {
     gl.bindBuffer(gl.ARRAY_BUFFER, this.drawingVerticesBuffer);
     gl.enableVertexAttribArray(this.aPositionDraw);
     gl.vertexAttribPointer(this.aPositionDraw, 2, gl.FLOAT, false, 0, 0);
-    gl.uniformMatrix4fv(this.uMatrixDraw, false, matrix);
+    gl.uniformMatrix4fv(
+      this.uMatrixDraw,
+      false,
+      new Float32Array(matrix as number[]),
+    );
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, this.computationTexture);
     gl.uniform1i(this.uComputationTexture, 0);
@@ -456,6 +464,7 @@ function createVertexShader(
 ): WebGLShader | undefined {
   const vertexShader = gl.createShader(gl.VERTEX_SHADER);
   if (vertexShader) return compileShader(gl, vertexShader, source);
+  return undefined;
 }
 
 function createFragmentShader(
@@ -464,6 +473,7 @@ function createFragmentShader(
 ): WebGLShader | undefined {
   const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
   if (fragmentShader) return compileShader(gl, fragmentShader, source);
+  return undefined;
 }
 
 function compileShader(
