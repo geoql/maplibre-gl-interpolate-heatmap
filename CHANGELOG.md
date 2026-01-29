@@ -1,5 +1,35 @@
 # Changelog
 
+## [0.1.3](https://github.com/geoql/maplibre-gl-interpolate-heatmap/compare/v0.1.2...v0.1.3) (2026-01-29)
+
+
+### Bug Fixes
+
+* **build:** suppress tsdown inlineOnly error for bundled earcut ([7559e5a](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/7559e5a16b99a2b060182528effc1691d64ffa8f))
+* **deps:** bump actions/download-artifact from 4 to 7 ([#749](https://github.com/geoql/maplibre-gl-interpolate-heatmap/issues/749)) ([2c7d0fe](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/2c7d0fe31e953465894a31f4e0a786aeb3d0ca46))
+* **deps:** bump actions/upload-artifact from 4 to 6 ([#750](https://github.com/geoql/maplibre-gl-interpolate-heatmap/issues/750)) ([1111e2b](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/1111e2bc7b4872b6b31eea5db09c6baab89a867d))
+* **deps:** bump actions/upload-pages-artifact from 3 to 4 ([#748](https://github.com/geoql/maplibre-gl-interpolate-heatmap/issues/748)) ([1b939db](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/1b939dbbece237d20ab94790e52a1a35564006fc))
+* **deps:** bump github/codeql-action from 3 to 4 ([#751](https://github.com/geoql/maplibre-gl-interpolate-heatmap/issues/751)) ([0814a48](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/0814a483ebf0e02be8e9dc193a9e3bce09295fa4))
+* **layer:** resolve type errors from stricter tsconfig ([744665c](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/744665c7e1d723a571cdc7578d940805358f8819))
+
+
+### Miscellaneous
+
+* add node24 target to tsdown config ([afb3d6d](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/afb3d6da5c85c99d8fc2e009fbd37da644ad0438))
+* add vscode workspace settings ([49af21d](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/49af21d8705fe8891a9904f9cc200bd143f561cf))
+* **ci:** remove codeql workflow ([b80b0d0](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/b80b0d0cd021e908b52d8e0f3dc49e4df49a4295))
+* **ci:** split demo deployment into separate workflow ([fe306ea](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/fe306ead567af2e4297525b48e96c0d08673b30a))
+* **ci:** update release-please workflow ([bfcdc09](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/bfcdc09eae5f3fbc4465c88c86b9c15cb73c7508))
+* **deps:** bump actions/upload-artifact in the actions group ([#763](https://github.com/geoql/maplibre-gl-interpolate-heatmap/issues/763)) ([928cd76](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/928cd7694d93db6d684d1c5b6ac176699fab41db))
+* **deps:** update project dependencies ([968b903](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/968b903455693ef845e5656a6ee1b87fa4804477))
+* remove obsolete config files ([7a675ac](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/7a675ac6b72bcc33b5085ca8100eea8751156df3))
+* rename oxlintrc.json to oxlintrc.jsonc ([2ca4a7b](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/2ca4a7ba895047a4a977b5cdc571bc56b931af14))
+* replace prettier with oxfmt ([d20e78c](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/d20e78ce855b478f0246c331738299502a6d4c6c))
+* update dependabot configuration ([bf09185](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/bf0918529077218711b5ab4b6baa8e9145375498))
+* update gitignore entries ([eda044a](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/eda044af3426a2023dcf0cd70ba4daa503aafb9c))
+* update husky hooks ([1b1a30e](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/1b1a30eb0cfad9f789e7121a6ebb618e49a48bf8))
+* update tsconfig with stricter type checking ([cff43f1](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/cff43f12fc7ddd45c22a7e91a73ced3b82e4c6cb))
+
 ## [0.1.2](https://github.com/geoql/maplibre-gl-interpolate-heatmap/compare/v0.1.1...v0.1.2) (2026-01-12)
 
 
