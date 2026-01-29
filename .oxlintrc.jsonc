@@ -4,7 +4,7 @@
   "env": {
     "browser": true,
     "node": true,
-    "es2024": true
+    "es2024": true,
   },
   "rules": {
     "no-console": "warn",
@@ -17,7 +17,13 @@
     "typescript/no-floating-promises": "error",
     "typescript/no-unsafe-assignment": "warn",
     "import/no-cycle": "error",
-    "import/no-duplicates": "error"
+    "import/no-duplicates": "error",
   },
-  "ignorePatterns": ["dist", "node_modules", "*.config.ts"]
+  "ignorePatterns": [
+    "dist",
+    "node_modules",
+    "coverage",
+    "*.config.ts",
+    "example",
+  ],
 }
