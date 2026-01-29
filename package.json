@@ -1,62 +1,23 @@
 {
   "name": "maplibre-gl-interpolate-heatmap",
-  "description": "Mapbox layer for average/interpolation heatmaps",
   "version": "0.1.2",
-  "type": "module",
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.mts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.mts",
-      "import": "./dist/index.mjs"
-    }
-  },
-  "files": [
-    "dist",
-    "src"
-  ],
-  "scripts": {
-    "build": "tsdown",
-    "dev": "tsdown --watch",
-    "test": "echo 'test!'",
-    "prepare": "is-ci || husky",
-    "lint": "oxlint --deny-warnings",
-    "lint:fix": "oxlint --fix",
-    "format": "prettier --check .",
-    "format:fix": "prettier --write .",
-    "typecheck": "tsc --noEmit",
-    "publish:npm": "npm publish --access public",
-    "publish:jsr": "bunx jsr publish"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "@commitlint/cli": "^20.3.1",
-    "@commitlint/config-conventional": "^20.3.1",
-    "@types/earcut": "^3.0.0",
-    "@types/node": "^25.0.6",
-    "husky": "^9.1.7",
-    "is-ci": "^4.1.0",
-    "lint-staged": "^16.2.7",
-    "maplibre-gl": "5.16.0",
-    "oxlint": "^1.39.0",
-    "prettier": "^3.7.4",
-    "tsdown": "^0.19.0",
-    "typescript": "^5.9.3"
-  },
-  "peerDependencies": {
-    "maplibre-gl": ">=3.0.0"
-  },
+  "private": false,
+  "description": "Mapbox layer for average/interpolation heatmaps",
   "keywords": [
+    "average",
+    "heatmap",
+    "interpolation",
+    "layer",
+    "map",
     "mapbox",
     "maplibre",
-    "heatmap",
-    "layer",
-    "average",
-    "interpolation",
-    "temperature",
-    "map"
+    "temperature"
   ],
+  "homepage": "https://github.com/geoql/maplibre-gl-interpolate-heatmap#readme",
+  "bugs": {
+    "url": "https://github.com/geoql/maplibre-gl-interpolate-heatmap/issues"
+  },
+  "license": "MIT",
   "author": {
     "name": "Vinayak Kulkarni",
     "email": "inbox.vinayak@gmail.com",
@@ -66,19 +27,57 @@
     "Léo Leplat",
     "Chris Santamaria"
   ],
-  "license": "MIT",
-  "engines": {
-    "node": ">=24.0.0"
-  },
-  "packageManager": "bun@1.3.5",
-  "private": false,
-  "sideEffects": false,
-  "bugs": {
-    "url": "https://github.com/geoql/maplibre-gl-interpolate-heatmap/issues"
-  },
-  "homepage": "https://github.com/geoql/maplibre-gl-interpolate-heatmap#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/geoql/maplibre-gl-interpolate-heatmap.git"
-  }
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test": "echo 'test!'",
+    "prepare": "is-ci || husky",
+    "lint": "oxlint --deny-warnings",
+    "lint:fix": "oxlint --fix",
+    "format": "oxfmt --check",
+    "format:fix": "oxfmt --write",
+    "typecheck": "tsc --noEmit",
+    "publish:npm": "npm publish --access public",
+    "publish:jsr": "bunx jsr publish"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^20.3.1",
+    "@commitlint/config-conventional": "^20.3.1",
+    "@commitlint/types": "^20.3.1",
+    "@types/earcut": "^3.0.0",
+    "@types/node": "^25.1.0",
+    "husky": "^9.1.7",
+    "is-ci": "^4.1.0",
+    "lint-staged": "^16.2.7",
+    "maplibre-gl": "5.17.0",
+    "oxfmt": "^0.27.0",
+    "oxlint": "^1.42.0",
+    "tsdown": "^0.20.1",
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "maplibre-gl": ">=3.0.0"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "packageManager": "bun@1.3.7"
 }
