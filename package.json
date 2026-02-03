@@ -68,7 +68,7 @@
     "is-ci": "^4.1.0",
     "lint-staged": "^16.2.7",
     "maplibre-gl": "5.17.0",
-    "oxfmt": "^0.27.0",
+    "oxfmt": "^0.28.0",
     "oxlint": "^1.42.0",
     "tsdown": "^0.20.1",
     "typescript": "^5.9.3"
