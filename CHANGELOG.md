@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.1.4](https://github.com/geoql/maplibre-gl-interpolate-heatmap/compare/v0.1.3...v0.1.4) (2026-03-08)
+
+
+### Miscellaneous
+
+* bump dependencies ✨ ([2a58ea2](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/2a58ea2d20562ebb5dbaafa7e9f1962a6a3bb13a))
+* **deps:** bump actions/upload-artifact in the actions group ([#767](https://github.com/geoql/maplibre-gl-interpolate-heatmap/issues/767)) ([8e3a0d6](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/8e3a0d6fa4f98c2b5dab11d6ed9a4b06136771b1))
+* update husky hook 🐶 ([eb81995](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/eb81995c618ecd7506e30c2229ae2c22eb17d936))
+
 ## [0.1.3](https://github.com/geoql/maplibre-gl-interpolate-heatmap/compare/v0.1.2...v0.1.3) (2026-01-29)
 
 
