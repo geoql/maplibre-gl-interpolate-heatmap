@@ -1,4 +1,4 @@
-import maplibregl from 'maplibre-gl';
+import * as maplibregl from 'maplibre-gl';
 import { MaplibreInterpolateHeatmapLayer } from 'maplibre-gl-interpolate-heatmap';
 import './style.css';
 
