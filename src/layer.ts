@@ -1,7 +1,8 @@
 import earcut from 'earcut';
-import maplibregl, {
-  type CustomLayerInterface,
-  type CustomRenderMethodInput,
+import * as maplibregl from 'maplibre-gl';
+import type {
+  CustomLayerInterface,
+  CustomRenderMethodInput,
 } from 'maplibre-gl';
 
 type MaplibreInterpolateHeatmapLayerOptions = {

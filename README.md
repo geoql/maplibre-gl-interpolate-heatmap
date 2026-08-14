@@ -14,7 +14,7 @@
 
 ---
 
-A MapLibre GL JS custom layer for rendering interpolated heatmaps (extracting average values) with WebGL shaders. Works with **MapLibre GL JS v5+** (WebGL2).
+A MapLibre GL JS custom layer for rendering interpolated heatmaps (extracting average values) with WebGL shaders. Works with **MapLibre GL JS v5+ / v6+** (WebGL2).
 
 This library was greatly inspired by [temperature-map-gl](https://github.com/ham-systems/temperature-map-gl) and depends on [Earcut](https://github.com/mapbox/earcut).
 
@@ -44,7 +44,7 @@ bunx jsr add @geoql/maplibre-gl-interpolate-heatmap
 ## Usage
 
 ```typescript
-import maplibregl from 'maplibre-gl';
+import * as maplibregl from 'maplibre-gl';
 import { MaplibreInterpolateHeatmapLayer } from 'maplibre-gl-interpolate-heatmap';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
@@ -123,7 +123,7 @@ Where `wi(x) = 1 / d(x, xi)^p` is the weight based on distance.
 ## Requirements
 
 - **Node.js** >= 24.0.0
-- **MapLibre GL JS** >= 3.0.0 (v5+ recommended for WebGL2)
+- **MapLibre GL JS** >= 3.0.0 (v5+ / v6+ recommended for WebGL2)
 
 ## Contributing
 
