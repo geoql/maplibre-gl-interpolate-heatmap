@@ -34,11 +34,11 @@ This library provides an **interpolated** heatmap that calculates colors based o
 # npm
 npm install maplibre-gl-interpolate-heatmap maplibre-gl
 
-# bun
-bun add maplibre-gl-interpolate-heatmap maplibre-gl
+# pnpm
+pnpm add maplibre-gl-interpolate-heatmap maplibre-gl
 
 # JSR
-bunx jsr add @geoql/maplibre-gl-interpolate-heatmap
+pnpm dlx jsr add @geoql/maplibre-gl-interpolate-heatmap
 ```
 
 ## Usage
@@ -133,10 +133,10 @@ Where `wi(x) = 1 / d(x, xi)^p` is the weight based on distance.
 4. Submit a PR
 
 ```bash
-bun install
-bun run build
-bun run lint
-bun run format
+pnpm install
+pnpm run build
+pnpm run lint
+pnpm run format
 ```
 
 ## License

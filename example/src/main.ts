@@ -2,6 +2,10 @@ import * as maplibregl from 'maplibre-gl';
 import { MaplibreInterpolateHeatmapLayer } from 'maplibre-gl-interpolate-heatmap';
 import './style.css';
 
+type WeatherResponse = {
+  main: { temp: number };
+};
+
 const map = new maplibregl.Map({
   container: 'map',
   style: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
@@ -47,7 +51,7 @@ map.on('load', async () => {
 
   const baseUrl =
     'https://api.openweathermap.org/data/2.5/weather?units=metric';
-  const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+  const apiKey = import.meta.env.VITE_WEATHER_API_KEY as string;
   const urls = points.map(
     ({ lat, lon }) => `${baseUrl}&lat=${lat}&lon=${lon}&appid=${apiKey}`,
   );
@@ -55,12 +59,12 @@ map.on('load', async () => {
   const weathers = await Promise.all(
     urls.map(async (url) => {
       const response = await fetch(url);
-      return response.json();
+      return (await response.json()) as WeatherResponse;
     }),
   );
 
   points.forEach((point, index) => {
-    point.val = weathers.at(index).main.temp;
+    point.val = weathers.at(index)!.main.temp;
   });
 
   const options = {

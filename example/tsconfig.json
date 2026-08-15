@@ -4,6 +4,7 @@
     "useDefineForClassFields": true,
     "module": "ESNext",
     "lib": ["ESNext", "DOM"],
+    "types": ["vite/client"],
     "moduleResolution": "bundler",
     "strict": true,
     "resolveJsonModule": true,
@@ -13,7 +14,10 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "maplibre-gl-interpolate-heatmap": ["../src/index.ts"]
+    }
   },
   "include": ["src"]
 }

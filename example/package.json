@@ -1,20 +1,21 @@
 {
-  "name": "@geoql/maplibre-gl-interpolate-heatmap-example",
+  "name": "maplibre-gl-interpolate-heatmap-example",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev": "vp dev",
+    "build": "vp check && vp build",
+    "preview": "vp preview"
   },
   "dependencies": {
     "maplibre-gl": "^6.3.0",
-    "maplibre-gl-interpolate-heatmap": "file:.."
+    "maplibre-gl-interpolate-heatmap": "workspace:*"
   },
   "devDependencies": {
-    "@types/node": "^25.1.0",
-    "typescript": "^5.9.3",
-    "vite": "^7.3.1"
+    "@types/node": "^26.2.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.1",
+    "vite-plus": "^0.2.9"
   }
 }
