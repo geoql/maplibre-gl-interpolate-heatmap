@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.5](https://github.com/geoql/maplibre-gl-interpolate-heatmap/compare/v0.1.4...v0.1.5) (2026-10-25)
+
+
+### Features
+
+* **demo:** enable ga4 ([#786](https://github.com/geoql/maplibre-gl-interpolate-heatmap/issues/786)) ([b92156e](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/b92156e11fa0db7de385bb34be2aed99b8541a67))
+
+
+### Miscellaneous
+
+* move the demo to cloudflare workers, pnpm and latest deps ([#784](https://github.com/geoql/maplibre-gl-interpolate-heatmap/issues/784)) ([770435b](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/770435b0b64a4ce060b5a91768e4606b69e8d10b))
+
 ## [0.1.4](https://github.com/geoql/maplibre-gl-interpolate-heatmap/compare/v0.1.3...v0.1.4) (2026-08-15)
 
 
