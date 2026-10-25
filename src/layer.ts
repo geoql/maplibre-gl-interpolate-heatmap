@@ -231,8 +231,11 @@ class MaplibreInterpolateHeatmapLayer implements CustomLayerInterface {
       throw 'WebGL error: Failed to get the storage location of drawing variable';
     }
     const drawingVertices: number[] = [];
+    // Without an AOI the layer covers a quad in Mercator space (the world is
+    // 0..1). It spans -2..3 so the world copies on both sides of the main
+    // one are painted too; -1..1 stopped at the antimeridian east of it.
     if (this.aoi?.length === 0) {
-      drawingVertices.push(-1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, -1.0);
+      drawingVertices.push(-2.0, -2.0, -2.0, 3.0, 3.0, 3.0, 3.0, -2.0);
     } else {
       this.aoi?.forEach((aoi) => {
         const coordinates = maplibregl.MercatorCoordinate.fromLngLat(aoi);
@@ -248,7 +251,7 @@ class MaplibreInterpolateHeatmapLayer implements CustomLayerInterface {
     );
     const computationVertices = this.textureCoverSameAreaAsROI
       ? drawingVertices
-      : [1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, -1.0];
+      : [3.0, 3.0, -2.0, 3.0, 3.0, -2.0, -2.0, -2.0];
     this.computationVerticesBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, this.computationVerticesBuffer);
     gl.bufferData(
