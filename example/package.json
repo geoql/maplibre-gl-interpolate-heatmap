@@ -1,21 +1,30 @@
 {
-  "name": "maplibre-gl-interpolate-heatmap-example",
+  "name": "maplibre-gl-interpolate-heatmap-demo",
   "version": "0.0.0",
   "private": true,
+  "description": "Live demo of maplibre-gl-interpolate-heatmap on Cloudflare Workers",
   "type": "module",
   "scripts": {
-    "dev": "vp dev",
-    "build": "vp check && vp build",
-    "preview": "vp preview"
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "preview": "nuxt build && wrangler dev --config .output/server/wrangler.json",
+    "deploy": "nuxt build && wrangler deploy --config .output/server/wrangler.json",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt prepare && vue-tsc -b --noEmit"
   },
   "dependencies": {
-    "maplibre-gl": "^6.3.0",
-    "maplibre-gl-interpolate-heatmap": "workspace:*"
+    "@nuxtjs/color-mode": "^4.0.1",
+    "maplibre-gl": "^6.15.0",
+    "maplibre-gl-interpolate-heatmap": "workspace:*",
+    "nuxt": "^4.6.2",
+    "vue": "^3.5.44"
   },
   "devDependencies": {
-    "@types/node": "^26.2.0",
-    "typescript": "^7.0.2",
-    "vite": "^8.2.1",
-    "vite-plus": "^0.2.9"
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/geojson": "^7946.0.16",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3",
+    "vue-tsc": "^3.3.13",
+    "wrangler": "^4.152.0"
   }
 }
