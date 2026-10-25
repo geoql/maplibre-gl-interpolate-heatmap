@@ -1,15 +1,39 @@
 packages:
   - example
 
+catalog:
+  vite: npm:@voidzero-dev/vite-plus-core@1.4.0
+  vite-plus: 1.4.0
+
 overrides:
   # Keep `vite` (peer/type-only in this workspace) on the same instance as Vite+
   # so there is never a split Vite copy.
-  vite: npm:@voidzero-dev/vite-plus-core@0.2.9
+  vite@*: 'catalog:'
 
 peerDependencyRules:
   allowedVersions:
     # vite-plus-core satisfies vitest's `vite` peer (it IS the Vite 8 fork).
     vite: '*'
+  allowAny:
+    - vite
 
 allowBuilds:
+  '@parcel/watcher': true
   esbuild: true
+  workerd: true
+
+minimumReleaseAgeExclude:
+  - '@nuxt/*'
+  - nuxt
+  - '@vue/*'
+  - vue
+  - wrangler
+  - workerd
+  - '@cloudflare/*'
+  - miniflare
+  - '@types/*'
+  - '@commitlint/*'
+  - '@oxlint/*'
+  - '@oxfmt/*'
+  - vite-plus
+  - '@voidzero-dev/*'

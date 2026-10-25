@@ -7,14 +7,16 @@
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/maplibre-gl-interpolate-heatmap)](https://bundlephobia.com/package/maplibre-gl-interpolate-heatmap)
 [![GitHub contributors](https://img.shields.io/github/contributors/geoql/maplibre-gl-interpolate-heatmap)](https://github.com/geoql/maplibre-gl-interpolate-heatmap/graphs/contributors)
 
+[![vite-plus](https://img.shields.io/badge/toolchain-vite--plus-646cff)](https://viteplus.dev)
 [![oxlint](https://img.shields.io/badge/linter-oxlint-7c5dfa?logo=oxc)](https://oxc.rs)
-[![prettier](https://img.shields.io/badge/formatter-prettier-f7b93e?logo=prettier)](https://prettier.io/)
-[![tsdown](https://img.shields.io/badge/bundler-tsdown-3178c6)](https://tsdown.dev/)
+[![oxfmt](https://img.shields.io/badge/formatter-oxfmt-7c5dfa?logo=oxc)](https://oxc.rs)
 [![typescript](https://img.shields.io/npm/dependency-version/maplibre-gl-interpolate-heatmap/dev/typescript?logo=TypeScript)](https://www.typescriptlang.org/)
 
 ---
 
 A MapLibre GL JS custom layer for rendering interpolated heatmaps (extracting average values) with WebGL shaders. Works with **MapLibre GL JS v5+ / v6+** (WebGL2).
+
+**Live demo:** [maplibre-gl-interpolate-heatmap.geoql.in](https://maplibre-gl-interpolate-heatmap.geoql.in) — current world air temperature (Open-Meteo), interpolated on the GPU, with live controls for `opacity`, `p`, `framebufferFactor` and `valueToColor`.
 
 This library was greatly inspired by [temperature-map-gl](https://github.com/ham-systems/temperature-map-gl) and depends on [Earcut](https://github.com/mapbox/earcut).
 
@@ -122,8 +124,8 @@ Where `wi(x) = 1 / d(x, xi)^p` is the weight based on distance.
 
 ## Requirements
 
-- **Node.js** >= 24.0.0
 - **MapLibre GL JS** >= 3.0.0 (v5+ / v6+ recommended for WebGL2)
+- **Node.js** >= 26 and **pnpm** 12 to develop this repository (see `devEngines` and `packageManager` in `package.json`)
 
 ## Contributing
 
@@ -134,9 +136,23 @@ Where `wi(x) = 1 / d(x, xi)^p` is the weight based on distance.
 
 ```bash
 pnpm install
-pnpm run build
 pnpm run lint
 pnpm run format
+pnpm run typecheck
+pnpm run test
+pnpm run build
+```
+
+### Demo
+
+The demo in [`example/`](example) is a Nuxt app that runs on a Cloudflare Worker (`maplibre-gl-interpolate-heatmap-demo`) at [maplibre-gl-interpolate-heatmap.geoql.in](https://maplibre-gl-interpolate-heatmap.geoql.in).
+
+```bash
+pnpm run build                                            # build the library first
+pnpm --filter maplibre-gl-interpolate-heatmap-demo dev    # local dev server
+pnpm run typecheck:demo                                   # vue-tsc
+pnpm run build:demo                                       # Worker bundle in example/.output
+pnpm run deploy                                           # wrangler deploy (needs Cloudflare access)
 ```
 
 ## License

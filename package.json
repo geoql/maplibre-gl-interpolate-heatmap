@@ -13,7 +13,7 @@
     "maplibre",
     "temperature"
   ],
-  "homepage": "https://github.com/geoql/maplibre-gl-interpolate-heatmap#readme",
+  "homepage": "https://maplibre-gl-interpolate-heatmap.geoql.in",
   "bugs": {
     "url": "https://github.com/geoql/maplibre-gl-interpolate-heatmap/issues"
   },
@@ -48,7 +48,7 @@
   "scripts": {
     "build": "vp pack",
     "check": "vp check",
-    "test": "echo 'test!'",
+    "test": "vp test run",
     "prepare": "is-ci || husky",
     "lint": "vp lint",
     "lint:fix": "vp lint --fix",
@@ -56,28 +56,34 @@
     "format:fix": "vp fmt --write",
     "typecheck": "vp check --no-fmt --no-lint",
     "publish:npm": "npm publish --access public",
-    "publish:jsr": "pnpm dlx jsr publish"
+    "publish:jsr": "pnpm dlx jsr publish",
+    "build:demo": "pnpm run build && pnpm --filter maplibre-gl-interpolate-heatmap-demo run build",
+    "typecheck:demo": "pnpm run build && pnpm --filter maplibre-gl-interpolate-heatmap-demo run typecheck",
+    "deploy": "pnpm run build && pnpm --filter maplibre-gl-interpolate-heatmap-demo run deploy"
   },
   "dependencies": {},
   "devDependencies": {
-    "@commitlint/cli": "^21.2.2",
-    "@commitlint/config-conventional": "^21.2.2",
-    "@commitlint/types": "^21.2.0",
-    "@types/earcut": "^3.0.0",
-    "@types/node": "^26.2.0",
-    "earcut": "^3.2.3",
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
+    "@commitlint/types": "^21.2.3",
+    "@types/earcut": "^3.2.4",
+    "@types/node": "^26.6.5",
+    "earcut": "^3.2.4",
     "husky": "^9.1.7",
     "is-ci": "^4.1.0",
-    "lint-staged": "^17.3.0",
-    "maplibre-gl": "^6.3.0",
+    "lint-staged": "^17.6.0",
+    "maplibre-gl": "^6.15.0",
     "typescript": "^7.0.2",
-    "vite-plus": "^0.2.9"
+    "vite-plus": "catalog:"
   },
   "peerDependencies": {
     "maplibre-gl": ">=3.0.0"
   },
-  "engines": {
-    "node": ">=24.0.0"
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": ">=26.x"
+    }
   },
-  "packageManager": "pnpm@11.21.0+sha512.521705bce689924eac72f5a3587122f362689ef6571e55ba80076fd637c11132ecffada26fad4ea79c485bfddbfd3d5a2a5b05805a77e893de71ec8a6cca3bb1"
+  "packageManager": "pnpm@12.15.0+sha512.b3951d6d6ff4a9f13dc7cf56cd28d2b8eb37dbcc9c68e52e1e1191873ea9f82a017287ab50baadc5ccc494f036c67c0e47eb13608c2fa36f47711b61ea128e61"
 }

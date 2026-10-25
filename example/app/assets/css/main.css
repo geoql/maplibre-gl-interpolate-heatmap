@@ -1,0 +1,154 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Fonts (self-hosted, same families as nxui.geoql.in) ─────────── */
+
+@font-face {
+  font-family: 'Clash Display';
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/clash-display-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Satoshi';
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/satoshi-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Satoshi';
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/satoshi-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono-400.woff2') format('woff2');
+}
+
+/* ── Tokens ──────────────────────────────────────────────────────────
+ * Paper and ink with one accent: ember, the warm end of the heat ramp.
+ * Accent marks focus, the active choice and the live readout — never body
+ * text. The map supplies all other colour.
+ */
+
+:root {
+  color-scheme: light;
+  --paper: oklch(0.975 0.006 85);
+  --paper-2: oklch(0.95 0.008 85);
+  --ink: oklch(0.21 0.014 260);
+  --ink-2: oklch(0.42 0.014 260);
+  --ink-3: oklch(0.52 0.012 260);
+  --rule: oklch(0.87 0.008 85);
+  --accent: oklch(0.6 0.16 40);
+  --accent-ink: oklch(0.5 0.15 38);
+}
+
+.dark {
+  color-scheme: dark;
+  --paper: oklch(0.17 0.01 260);
+  --paper-2: oklch(0.21 0.012 260);
+  --ink: oklch(0.95 0.008 85);
+  --ink-2: oklch(0.78 0.01 85);
+  --ink-3: oklch(0.66 0.012 260);
+  --rule: oklch(0.3 0.012 260);
+  --accent: oklch(0.72 0.15 50);
+  --accent-ink: oklch(0.8 0.12 60);
+}
+
+@theme {
+  --font-sans: 'Satoshi', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Clash Display', 'Satoshi', ui-sans-serif, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Display sizes: fluid between a 375px phone and a 1440px desktop. */
+  --text-title: clamp(1.5rem, 4.5vw, 2.25rem);
+  --text-title--line-height: 1;
+  --text-readout: clamp(2.75rem, 9vw, 4.5rem);
+  --text-readout--line-height: 0.95;
+  --text-label: 0.6875rem;
+
+  /* Measures for running text. */
+  --container-panel: 22.5rem;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-rule: var(--rule);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+}
+
+/* Phones: the map takes the first 62% of the screen, the panel follows. */
+@utility h-map-phone {
+  height: 62dvh;
+}
+
+/* Desktop: the floating panel never runs past the viewport. */
+@utility max-h-panel {
+  max-height: calc(100dvh - 2rem);
+}
+
+/* MapLibre controls in the page's paper/ink, with square corners. */
+@layer components {
+  .maplibregl-ctrl-group,
+  .maplibregl-ctrl-attrib,
+  .maplibregl-ctrl-scale {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border: 1px solid var(--rule) !important;
+    background: var(--paper) !important;
+    color: var(--ink-2) !important;
+  }
+  .maplibregl-ctrl-attrib a {
+    color: var(--ink-2) !important;
+  }
+  .maplibregl-ctrl-group button + button {
+    border-top-color: var(--rule) !important;
+  }
+  .dark .maplibregl-ctrl-group button .maplibregl-ctrl-icon {
+    filter: invert(1);
+  }
+  .dark .maplibregl-ctrl-attrib-button {
+    filter: invert(1);
+  }
+}
+
+@layer base {
+  html {
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    font-family: var(--font-sans);
+    font-feature-settings: 'calt' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--paper);
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
