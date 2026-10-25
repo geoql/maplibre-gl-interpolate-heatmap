@@ -11,7 +11,9 @@ const { data, status, refresh } = useFetch<TemperatureSnapshot>(
 const opacity = ref(0.55);
 const power = ref(3);
 const resolution = ref(0.3);
-const palette = ref<PaletteId>('spectral');
+// Temperature reads best on a diverging ramp; the library default stays one
+// click away.
+const palette = ref<PaletteId>('ocean');
 const showStations = ref(false);
 const position = ref<{ lon: number; lat: number } | null>(null);
 

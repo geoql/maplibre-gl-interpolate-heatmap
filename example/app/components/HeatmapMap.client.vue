@@ -55,7 +55,15 @@ function applyHeatmap(m: maplibregl.Map) {
   const valueToColor = valueToColorGlsl(props.palette);
   const layer = new MaplibreInterpolateHeatmapLayer({
     id: HEAT_ID,
-    data: props.stations.map((s) => ({ lat: s.lat, lon: s.lon, val: s.val })),
+    // Copies at ±360° so the world copies left and right of the main one
+    // are painted too (a wide screen shows more than 360° at low zoom).
+    data: [-360, 0, 360].flatMap((shift) =>
+      props.stations.map((s) => ({
+        lat: s.lat,
+        lon: s.lon + shift,
+        val: s.val,
+      })),
+    ),
     opacity: props.opacity,
     p: props.power,
     framebufferFactor: props.resolution,
