@@ -23,7 +23,7 @@
     "@tailwindcss/vite": "^4.3.3",
     "@types/geojson": "^7946.0.16",
     "tailwindcss": "^4.3.3",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "vue-tsc": "^3.3.13",
     "wrangler": "^4.152.0"
   }
