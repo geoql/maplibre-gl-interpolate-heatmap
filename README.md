@@ -12,6 +12,8 @@
 [![oxfmt](https://img.shields.io/badge/formatter-oxfmt-7c5dfa?logo=oxc)](https://oxc.rs)
 [![typescript](https://img.shields.io/npm/dependency-version/maplibre-gl-interpolate-heatmap/dev/typescript?logo=TypeScript)](https://www.typescriptlang.org/)
 
+**[Live demo](https://maplibre-gl-interpolate-heatmap.geoql.in/?utm_source=github&utm_medium=readme&utm_campaign=maplibre-gl-interpolate-heatmap)** · [npm](https://www.npmjs.com/package/maplibre-gl-interpolate-heatmap) · [JSR](https://jsr.io/@geoql/maplibre-gl-interpolate-heatmap)
+
 ---
 
 A MapLibre GL JS custom layer for rendering interpolated heatmaps (extracting average values) with WebGL shaders. Works with **MapLibre GL JS v5+ / v6+** (WebGL2).
@@ -154,6 +156,17 @@ pnpm run typecheck:demo                                   # vue-tsc
 pnpm run build:demo                                       # Worker bundle in example/.output
 pnpm run deploy                                           # wrangler deploy (needs Cloudflare access)
 ```
+
+## More from the author
+
+- [maplibre-gl-wind](https://maplibre-gl-wind.geoql.in/?utm_source=github&utm_medium=readme&utm_campaign=maplibre-gl-interpolate-heatmap) — wind particle animation layer
+- [maplibre-gl-snow](https://maplibre-gl-snow.geoql.in/?utm_source=github&utm_medium=readme&utm_campaign=maplibre-gl-interpolate-heatmap) — WebGPU snow particle layer
+- [maplibre-gl-inspect](https://maplibre-gl-inspect.geoql.in/?utm_source=github&utm_medium=readme&utm_campaign=maplibre-gl-interpolate-heatmap) — inspect vector tile features and their properties
+- [maplibre-gl-compare](https://maplibre-gl-compare.geoql.in/?utm_source=github&utm_medium=readme&utm_campaign=maplibre-gl-interpolate-heatmap) — swipe-style map comparison control
+- [v-maplibre](https://v-maplibre.geoql.in/?utm_source=github&utm_medium=readme&utm_campaign=maplibre-gl-interpolate-heatmap) — 50+ Vue 3 components for MapLibre GL
+- [mapcn-vue](https://mapcn-vue.geoql.in/?utm_source=github&utm_medium=readme&utm_campaign=maplibre-gl-interpolate-heatmap) — shadcn-vue map components you copy into your app
+
+See every project at [vinayakkulkarni.dev/projects](https://vinayakkulkarni.dev/projects?utm_source=github&utm_medium=readme&utm_campaign=maplibre-gl-interpolate-heatmap) and [geoql.in](https://geoql.in/?utm_source=github&utm_medium=readme&utm_campaign=maplibre-gl-interpolate-heatmap).
 
 ## License
 
