@@ -1,6 +1,6 @@
 {
   "name": "@geoql/maplibre-gl-interpolate-heatmap",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "exports": "./dist/index.js",
   "publish": {
     "include": [
