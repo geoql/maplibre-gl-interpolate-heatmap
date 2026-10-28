@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.6](https://github.com/geoql/maplibre-gl-interpolate-heatmap/compare/v0.1.5...v0.1.6) (2026-10-28)
+
+
+### Documentation
+
+* link live demo and related projects ([#789](https://github.com/geoql/maplibre-gl-interpolate-heatmap/issues/789)) ([1c960cd](https://github.com/geoql/maplibre-gl-interpolate-heatmap/commit/1c960cdc202991cfb606e87b05f8b3840df6f00a))
+
 ## [0.1.5](https://github.com/geoql/maplibre-gl-interpolate-heatmap/compare/v0.1.4...v0.1.5) (2026-10-25)
 
 
