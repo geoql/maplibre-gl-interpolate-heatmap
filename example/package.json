@@ -13,10 +13,10 @@
     "typecheck": "nuxt prepare && vue-tsc -b --noEmit"
   },
   "dependencies": {
-    "@nuxtjs/color-mode": "^4.0.1",
-    "maplibre-gl": "^6.15.0",
+    "@nuxtjs/color-mode": "^4.1.0",
+    "maplibre-gl": "^6.16.0",
     "maplibre-gl-interpolate-heatmap": "workspace:*",
-    "nuxt": "^4.6.2",
+    "nuxt": "^4.6.3",
     "vue": "^3.5.44"
   },
   "devDependencies": {
@@ -24,7 +24,7 @@
     "@types/geojson": "^7946.0.16",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
-    "vue-tsc": "^3.3.13",
-    "wrangler": "^4.152.0"
+    "vue-tsc": "^3.3.14",
+    "wrangler": "^4.156.0"
   }
 }
